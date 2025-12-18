@@ -4,3 +4,5 @@
     url = /home/gks/tmp/dvcstore
 ['remote "myremotes3"']
     url = s3://mydummybucket
+['remote "mygdrive"']
+    url = gdrive://1fRil5XRJmOON2Dpb4gqZ6fs9RbxpYGD1
