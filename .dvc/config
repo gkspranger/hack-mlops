@@ -2,3 +2,5 @@
     remote = myremote
 ['remote "myremote"']
     url = /home/gks/tmp/dvcstore
+['remote "myremotes3"']
+    url = s3://mydummybucket

@@ -21,7 +21,7 @@ outs:
   path: data.xml
 ```
 
-dataset has been updated, and so now v2:
+imagine dataset has been updated, and so now v2:
 
 `dvc add data/data.xml`
 
@@ -38,6 +38,8 @@ outs:
   path: data.xml
 ```
 
+ok, so i get it's basically taking the MD5 of the file and using that to write to local/cache -- but those names were already `data/data.xml`
+
 here's a look at the underlying FS, after a `dvc push`:
 
 ```shell
@@ -48,3 +50,5 @@ $ tree ~/tmp/dvcstore/files/md5/
 └── 22
     └── a1a2931c8370d3aeedd7183606fd7f
 ```
+
+- i think understanding in how an s3 bucket/object is configed/pulled/used will help
