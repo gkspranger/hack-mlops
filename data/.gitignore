@@ -1,4 +1,6 @@
 /imdb-reviews-dataset.csv
+/model.joblib
+/results.yaml
 /test.csv
 /test.joblib
 /train.csv

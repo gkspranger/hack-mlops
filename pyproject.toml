@@ -34,6 +34,7 @@ myml = "mymlops.__main__:main"
 myml-prepare = "mymlops.prepare_data:main"
 myml-make-features = "mymlops.make_features:main"
 myml-train = "mymlops.train:main"
+myml-evaluate = "mymlops.evaluate:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/mymlops"]

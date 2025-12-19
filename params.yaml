@@ -16,3 +16,7 @@ train:
   C: 1.0
   solver: lbfgs
   model_save_path: ./data/model.joblib
+
+evaluate:
+  metric: accuracy
+  results_save_path: ./data/results.yaml
