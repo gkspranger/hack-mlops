@@ -1,0 +1,18 @@
+---
+
+data:
+  csv_file_path: ./data/imdb-reviews-dataset.csv
+  test_set_ratio: 0.3
+  train_csv_save_path: ./data/train.csv
+  test_csv_save_path: ./data/test.csv
+
+features:
+  vectorizer: count-vectorizer
+  train_features_save_path: ./data/train.joblib
+  test_features_save_path: ./data/test.joblib
+
+train:
+  penalty: l2
+  C: 1.0
+  solver: lbfgs
+  model_save_path: ./data/model.joblib

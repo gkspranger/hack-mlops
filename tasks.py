@@ -19,7 +19,13 @@ def _check_fix(c):
     c.run("ruff check --fix")
 
 
-@task(pre=[_format, _check_fix], name="all")
+@task(name="sort")
+def _sort(c):
+    """Sort Python imports."""
+    c.run("isort .")
+
+
+@task(pre=[_format, _check_fix, _sort], name="all")
 def _all(c):
     """Run all Python tasks."""
     pass
