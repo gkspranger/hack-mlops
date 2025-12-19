@@ -1,0 +1,6 @@
+outs:
+- md5: fc135ef794765e5b58c3cbb5db7cb039.dir
+  size: 43335291
+  nfiles: 1
+  hash: md5
+  path: xml
