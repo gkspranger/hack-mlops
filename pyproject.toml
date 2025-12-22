@@ -7,11 +7,11 @@ name = "mymlops"
 version = "0.0.1"
 dependencies = [
   "click>=8.0,<9.0",
-  "dvc>=3.0,<4.0",
-  "joblib>=1.0,<2.0",
-  "omegaconf>=2.0,<3.0",
-  "pandas>=2.0,<3.0",
-  "scikit-learn>=1.0,<2.0",
+  "hydra-core>=1.0,<2.0",
+  # "joblib>=1.0,<2.0",
+  # "omegaconf>=2.0,<3.0",
+  # "pandas>=2.0,<3.0",
+  # "scikit-learn>=1.0,<2.0",
 ]
 requires-python = ">=3.12,<3.13"
 description = "Sample Python project, managed by Team Build."
@@ -35,6 +35,7 @@ myml-prepare = "mymlops.prepare_data:main"
 myml-make-features = "mymlops.make_features:main"
 myml-train = "mymlops.train:main"
 myml-evaluate = "mymlops.evaluate:main"
+myml-hydra-main = "mymlops.hydra_main:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/mymlops"]
