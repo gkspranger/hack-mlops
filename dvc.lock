@@ -1,0 +1,115 @@
+schema: '2.0'
+stages:
+  prepare_data:
+    cmd: myml-prepare
+    deps:
+    - path: ./data/imdb-reviews-dataset.csv
+      hash: md5
+      md5: 308443a50e5c993e7b8a1cdb95750026
+      size: 66212309
+    - path: ./src/mymlops/prepare_data.py
+      hash: md5
+      md5: 2bdbd7e598ac34fe944a1ccb4b1e9ebe
+      size: 563
+    params:
+      params.yaml:
+        data:
+          csv_file_path: ./data/imdb-reviews-dataset.csv
+          test_set_ratio: 0.3
+          train_csv_save_path: ./data/train.csv
+          test_csv_save_path: ./data/test.csv
+    outs:
+    - path: ./data/test.csv
+      hash: md5
+      md5: 51d90af1d8323666d161de0cec433cf9
+      size: 19833030
+    - path: ./data/train.csv
+      hash: md5
+      md5: cfa7da197088f8a5ffcc273a5e104874
+      size: 46479308
+  make_features:
+    cmd: myml-make-features
+    deps:
+    - path: ./data/test.csv
+      hash: md5
+      md5: 51d90af1d8323666d161de0cec433cf9
+      size: 19833030
+    - path: ./data/train.csv
+      hash: md5
+      md5: cfa7da197088f8a5ffcc273a5e104874
+      size: 46479308
+    - path: ./src/mymlops/make_features.py
+      hash: md5
+      md5: 06a7749f12bee6d3ffa63b60fe564e5c
+      size: 790
+    params:
+      params.yaml:
+        features:
+          vectorizer: tfidf-vectorizer
+          train_features_save_path: ./data/train.joblib
+          test_features_save_path: ./data/test.joblib
+    outs:
+    - path: ./data/test.joblib
+      hash: md5
+      md5: ee3132e09876a350f740eebf150e4b05
+      size: 15817251
+    - path: ./data/train.joblib
+      hash: md5
+      md5: f3f8e9cb0dbe1de2fdb3ebd666f450cb
+      size: 37416227
+  train:
+    cmd: myml-train
+    deps:
+    - path: ./data/train.csv
+      hash: md5
+      md5: cfa7da197088f8a5ffcc273a5e104874
+      size: 46479308
+    - path: ./data/train.joblib
+      hash: md5
+      md5: f3f8e9cb0dbe1de2fdb3ebd666f450cb
+      size: 37416227
+    - path: ./src/mymlops/train.py
+      hash: md5
+      md5: 2a0a567795253b8a2a35c716088c71b3
+      size: 604
+    params:
+      params.yaml:
+        train:
+          penalty: l2
+          C: 1.0
+          solver: lbfgs
+          model_save_path: ./data/model.joblib
+    outs:
+    - path: ./data/model.joblib
+      hash: md5
+      md5: 7a51a99c114483c718704e38c6299ffc
+      size: 704319
+  evaluate:
+    cmd: myml-evaluate
+    deps:
+    - path: ./data/model.joblib
+      hash: md5
+      md5: 7a51a99c114483c718704e38c6299ffc
+      size: 704319
+    - path: ./data/test.csv
+      hash: md5
+      md5: 51d90af1d8323666d161de0cec433cf9
+      size: 19833030
+    - path: ./data/test.joblib
+      hash: md5
+      md5: ee3132e09876a350f740eebf150e4b05
+      size: 15817251
+    - path: ./src/mymlops/evaluate.py
+      hash: md5
+      md5: b59bf24a3d7658536e6b28894b65c291
+      size: 836
+    params:
+      params.yaml:
+        evaluate:
+          metric: f1_score
+          results_save_path: ./data/results.yaml
+    outs:
+    - path: ./data/results.yaml
+      hash: md5
+      md5: 746b84d1eb618ea1067f706d973bba13
+      size: 29

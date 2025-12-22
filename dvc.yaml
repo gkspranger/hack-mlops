@@ -1,0 +1,54 @@
+---
+
+# 492  rm -fr  data/model.joblib data/test.* data/train.*
+# 493  myml-prepare
+# 494  myml-make-features
+# 495  myml-train
+# 498  myml-evaluate
+
+stages:
+  prepare_data:
+    cmd: myml-prepare
+    deps:
+      - ./src/mymlops/prepare_data.py
+      - ./data/imdb-reviews-dataset.csv
+    params:
+      # example is custom file name
+      # - myparams.yaml:
+      #   - data
+      - data    # all of the data key
+    outs:
+      - ./data/train.csv
+      - ./data/test.csv
+  make_features:
+    cmd: myml-make-features
+    deps:
+      - ./src/mymlops/make_features.py
+      - ./data/train.csv
+      - ./data/test.csv
+    params:
+      - features
+    outs:
+      - ./data/train.joblib
+      - ./data/test.joblib
+  train:
+    cmd: myml-train
+    deps:
+      - ./src/mymlops/train.py
+      - ./data/train.joblib
+      - ./data/train.csv
+    params:
+      - train
+    outs:
+      - ./data/model.joblib
+  evaluate:
+    cmd: myml-evaluate
+    deps:
+      - ./src/mymlops/evaluate.py
+      - ./data/test.joblib
+      - ./data/test.csv
+      - ./data/model.joblib
+    params:
+      - evaluate
+    outs:
+      - ./data/results.yaml

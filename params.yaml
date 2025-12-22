@@ -7,7 +7,8 @@ data:
   test_csv_save_path: ./data/test.csv
 
 features:
-  vectorizer: count-vectorizer
+  # vectorizer: count-vectorizer
+  vectorizer: tfidf-vectorizer
   train_features_save_path: ./data/train.joblib
   test_features_save_path: ./data/test.joblib
 
@@ -18,5 +19,6 @@ train:
   model_save_path: ./data/model.joblib
 
 evaluate:
-  metric: accuracy
+  # metric: accuracy
+  metric: f1_score
   results_save_path: ./data/results.yaml
