@@ -1,0 +1,13 @@
+---
+
+
+defaults:
+  - experiment: experiment-w-resent18
+  - loss_function: arface
+  - config-merge    # sibling config
+  - _self_    # points to base config file - THIS FILE
+              # list is order of evaluation, last eval wins
+
+
+experiment:
+  hello: 999
