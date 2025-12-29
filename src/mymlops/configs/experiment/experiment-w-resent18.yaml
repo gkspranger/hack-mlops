@@ -1,2 +1,5 @@
+defaults:
+  - deeper: deep1
+
 hello: 123
 world: World!

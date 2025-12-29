@@ -287,3 +287,26 @@ some_key:
 - can instantiate class defs defined in configs and doesn't have to be in code
 
 - can instantiate any class really, doesn't have to be custom code
+
+### Packages
+
+- basically showing how you can use YAML files to load other YAML files to create a more complete config that can then be used in your experiments
+
+```shell
+$ myml-hydra-package
+
+experiment:
+  deeper:
+    howdeep:
+      output: i am deep 1
+  hello: 123
+  world: World!
+loss_function:
+  loss: arface
+some_other_experiment:
+  deeper:
+    howdeep:
+      output: i am deep 1
+  hello: 123
+  world: World!
+```

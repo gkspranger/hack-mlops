@@ -37,6 +37,7 @@ myml-train = "mymlops.train:main"
 myml-evaluate = "mymlops.evaluate:main"
 myml-hydra-main = "mymlops.hydra_main:main"
 myml-hydra-instantiate = "mymlops.hydra_instantiate:main"
+myml-hydra-package = "mymlops.hydra_package:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/mymlops"]

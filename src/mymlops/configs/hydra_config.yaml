@@ -1,0 +1,11 @@
+---
+
+defaults:
+  - experiment: experiment-w-resent18
+  - loss_function: arface
+  # just a simple reassignment of the key name
+  - experiment@some_other_experiment: experiment-w-resent18
+  # path to config and reassigning it to top level value
+  - /experiment/deeper/deep2@levelupdeep
+  # can adjust the depth of assignment as well
+  - /experiment/deeper/deep2@yoyo.ma
